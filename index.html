@@ -7,32 +7,33 @@
     <title>Calculator</title>
 
     <link href="styles.css" type="text/css" rel="stylesheet" />
-    <script src="script.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript" defer></script>
   </head>
   <body>
     <h1 class="title">TOP Calculator</h1>
     <div class="calculator">
       <div class="screen">
-        <span class="current">current</span>
-        <span class="previous">previous</span>
+        <span class="previous"></span>
+        <span class="current"></span>
       </div>
-      <button class="span-2 clear" data-key="C">C</button>
-      <button class="operator" data-key="/">/</button>
+      <button class="span-2 clear" data-key="clear">Clear</button>
+      <button class="span-2 delete" data-key="backspace">Backspace</button>
       <button data-key="1">1</button>
       <button data-key="2">2</button>
       <button data-key="3">3</button>
-      <button class="operator" data-key="*">*</button>
+      <button class="operator" data-key="/">/</button>
       <button data-key="4">4</button>
       <button data-key="5">5</button>
       <button data-key="6">6</button>
-      <button class="operator" data-key="-">-</button>
+      <button class="operator" data-key="*">*</button>
       <button data-key="7">7</button>
       <button data-key="8">8</button>
       <button data-key="9">9</button>
-      <button class="operator" data-key="+">+</button>
-      <button class="span-2" data-key="0">0</button>
+      <button class="operator" data-key="-">-</button>
       <button data-key=".">.</button>
+      <button data-key="0">0</button>
       <button class="operator" data-key="=">=</button>
+      <button class="operator" data-key="+">+</button>
     </div>
   </body>
 </html>
