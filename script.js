@@ -9,6 +9,8 @@ let currentOperation = { ...defaultOperation };
 const currentOperationDisplay = document.querySelector(".current");
 const previousOperationDisplay = document.querySelector(".previous");
 
+const allBtns = [...document.querySelectorAll("button")];
+
 const btnClear = document.querySelector("button.clear");
 const btnBackspace = document.querySelector("button.backspace");
 const btnCalcluate = document.querySelector("button.calculate");
@@ -106,13 +108,13 @@ function updateCurrent(value, operator = false) {
 
 // event listener callback functions
 function handleNumericClick(e) {
-  const value = e.target.dataset.key;
+  const value = e.target.dataset.value;
   updateCurrent(value);
   updateDisplay();
 }
 
 function handleOperatorClick(e) {
-  const value = e.target.dataset.key;
+  const value = e.target.dataset.value;
   updateCurrent(value, true);
   updateDisplay();
 }
@@ -141,6 +143,22 @@ function handleBackspaceClick() {
   updateDisplay();
 }
 
+function handleKeyPress(e) {
+  const { keyCode, shiftKey } = e;
+  const btn = allBtns.find((btn) => {
+    if (shiftKey) {
+      return btn.dataset.keycodeShift && +btn.dataset.keycode === keyCode;
+    }
+    return (
+      !btn.dataset.keycodeShift &&
+      (+btn.dataset.keycode === keyCode ||
+        +btn.dataset.keycodeAlt === keyCode ||
+        +btn.dataset.keycodeNumpad === keyCode)
+    );
+  });
+  if (btn) btn.click();
+}
+
 // event listeners
 btnsNumeric.forEach((btn) => btn.addEventListener("click", handleNumericClick));
 btnsOperator.forEach((btn) =>
@@ -149,3 +167,5 @@ btnsOperator.forEach((btn) =>
 btnCalcluate.addEventListener("click", handleCalculateClick);
 btnClear.addEventListener("click", handleClearClick);
 btnBackspace.addEventListener("click", handleBackspaceClick);
+
+window.addEventListener("keyup", handleKeyPress);
